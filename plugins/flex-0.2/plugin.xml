@@ -1,0 +1,7 @@
+<plugin name='flex' version='0.2'>
+  <author>Marcel Overdijk</author>
+  <authorEmail>marceloverdijk@gmail.com</authorEmail>
+  <title>Provides integration between Grails and Flex</title>
+  <documentation>http://grails.org/Flex+Plugin</documentation>
+  <resources />
+</plugin>

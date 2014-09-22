@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/web-app/WEB-INF/applicationContext.xml</file>
+        </fileset>
+      </configuration>
+    </facet>
+    <facet type="web" name="GrailsWeb">
+      <configuration>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/grails-app/views" relative="/" />
+        </webroots>
+        <sourceRoots />
+      </configuration>
+    </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map>
+          <unit-entry name="Gorm" />
+          <unit-entry name="sessionFactory" />
+        </datasource-map>
+        <naming-strategy-map />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/utils" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/domain" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/grails-app/taglib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test/unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test/integration" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target/classes" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="grails-2.1.1" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library name="Grails User Library (trunk)">
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/lib" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.hawtdispatch/hawtdispatch-transport/bundles/hawtdispatch-transport-1.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.mqtt-client/mqtt-client/bundles/mqtt-client-1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.scala-lang/scala-library/jars/scala-library-2.9.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/ant/ant/jars/ant-1.6.5.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/jsp-2.1/jars/jsp-2.1-6.1.14.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/servlet-api-2.5/jars/servlet-api-2.5-6.1.14.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/jsp-api-2.1/jars/jsp-api-2.1-6.1.14.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/servlet-api/jars/servlet-api-2.5-20081211.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.activemq/activeio-core/bundles/activeio-core-3.1.4.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.jasypt/jasypt/jars/jasypt-1.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/jetty-util/jars/jetty-util-6.1.26.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.mortbay.jetty/jetty/jars/jetty-6.1.26.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-beanutils/commons-beanutils-core/jars/commons-beanutils-core-1.8.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-digester/commons-digester/jars/commons-digester-1.8.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-logging/commons-logging/jars/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-configuration/commons-configuration/jars/commons-configuration-1.6.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.hadoop/hadoop-core/jars/hadoop-core-1.0.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codehaus.jackson/jackson-mapper-asl/jars/jackson-mapper-asl-1.9.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.codehaus.jackson/jackson-core-asl/jars/jackson-core-asl-1.9.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.xerial.snappy/snappy-java/bundles/snappy-java-1.0.3.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.leveldbjni/leveldbjni-linux64/jars/leveldbjni-linux64-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.leveldbjni/leveldbjni-linux32/jars/leveldbjni-linux32-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.hawtjni/hawtjni-runtime/jars/hawtjni-runtime-1.5.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.leveldbjni/leveldbjni/jars/leveldbjni-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.leveldbjni/leveldbjni-osx/jars/leveldbjni-osx-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.code.findbugs/jsr305/jars/jsr305-1.3.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.guava/guava/jars/guava-10.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.inject.extensions/guice-multibindings/jars/guice-multibindings-3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.sonatype.sisu.inject/cglib/jars/cglib-2.2.1-v20090111.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/javax.inject/javax.inject/jars/javax.inject-1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/com.google.inject/guice/jars/guice-3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.iq80.leveldb/leveldb-api/jars/leveldb-api-0.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.iq80.leveldb/leveldb/jars/leveldb-0.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.hawtdispatch/hawtdispatch/bundles/hawtdispatch-1.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.hawtdispatch/hawtdispatch-scala/bundles/hawtdispatch-scala-1.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.hawtbuf/hawtbuf/bundles/hawtbuf-1.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.hawtbuf/hawtbuf-proto/bundles/hawtbuf-proto-1.9.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.fusesource.fuse-extra/fusemq-leveldb/jars/fusemq-leveldb-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.geronimo.specs/geronimo-jms_1.1_spec/jars/geronimo-jms_1.1_spec-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.activemq/activemq-core/bundles/activemq-core-5.6.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.slf4j/slf4j-api/jars/slf4j-api-1.6.4.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.activemq/kahadb/bundles/kahadb-5.6.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.geronimo.specs/geronimo-j2ee-management_1.1_spec/jars/geronimo-j2ee-management_1.1_spec-1.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.apache.activemq.protobuf/activemq-protobuf/maven-plugins/activemq-protobuf-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-web/jars/spring-security-web-3.0.7.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.springframework.security/spring-security-core/jars/spring-security-core-3.0.7.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/commons-net/commons-net/jars/commons-net-2.2.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.osgi/org.osgi.core/jars/org.osgi.core-4.1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.grails/ivy-cache/org.liquibase/liquibase-core/jars/liquibase-core-2.0.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="trunk-grailsPlugins" />
+    <orderEntry type="library" name="grails-2.1.1" level="application" />
+  </component>
+</module>
+
