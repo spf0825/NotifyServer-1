@@ -574,6 +574,8 @@ class MessageController {
                             String currentClientSeqNo='';
                             boolean isResult=false;//是否接受返回的结果值
                             boolean isConfirm = false;//是否有交易信息
+                            boolean isReturn = false;//是否返回结果值；返回值为true才能发另外一条；每次发送设置为false等待接收
+                            boolean confirmFlag = false;//当有确认消息过来时设置为true;
                             def map = [:];
                             ConnectionFactory jms = new ActiveMQConnectionFactory(brokerURL: "tcp://127.0.0.1:61616");
                             use(JMS){
@@ -628,9 +630,22 @@ class MessageController {
                                         if(phone==currentClientSeqNo){
                                             def  str = "000D00A4040008A000000001336f78";//选择指令信息
                                             try{
-                                                output.write(HexString2Bytes(str));
-                                                output.write(bys);//发送确认信息
-                                                isConfirm=true;//有确认消息发送；
+                                                //output.write(HexString2Bytes(str));
+                                                confirmFlag = true;//核心系统有确认消息发送
+                                                if(isReturn){//是否已接收返回值；如果接收到返回值则发送确认信息
+                                                     output.write(bys);//发送确认信息
+                                                     isReturn = false;//等待返回值
+                                                     isConfirm=true;//有确认消息发送；
+                                                     
+                                                }else if(!isReturn){//如果没有接收到返回值
+                                                     sleep(1000);//等待1s，等待已发送的心跳接收返回值；
+                                                     if(isReturn){
+                                                          output.write(bys);//发送确认信息
+                                                          isReturn = false;//等待返回值
+                                                          isConfirm=true;//有确认消息发送；
+                                                     }
+                                                }
+                                                
                                             }catch(SocketException se){
                                                 println se.message;
                                                 output.close();
@@ -677,7 +692,56 @@ class MessageController {
                                 else if(oneRAPDU["dataSize"]==3){
                                     if(isResult){
                                         oneRAPDU["result1"]=oneRAPDU["result1"]+item.encodeAsHex();
-                                        println "result1======================"+ oneRAPDU["result1"]
+                                        println "result1======================"+ oneRAPDU["result1"];
+                                        oneRAPDU["dataSize"]=0;//重新接收值；
+                                        def result = "no";
+                                         boolean confirm = false;
+                                         if(oneRAPDU["result1"]=="9000"){//确认结果为9000是确认成功
+                                             result="yes";
+                                             println "result==true"
+                                             confirm=true;
+                                             isReturn = true;//已接收返回值成功
+                                         }else if(oneRAPDU["result1"]=="9300"){//确认结果为9000是确认失败
+                                             println "result==false"
+                                             result = "no";
+                                             confirm=true;
+                                             isReturn = true;//已接收返回值成功
+                                         }
+                                         oneRAPDU["result1"]="";
+                                        // oneRAPDU["result2"]="";
+     
+                                         if(isConfirm && confirm && map.phone==currentClientSeqNo){//是确认结果值且返回值为9000
+                                            isConfirm = false;//重置交易信息为false;
+                                            confirmFlag = false;//确认信息已经发送
+                                             def info;
+                                             Info.withNewSession {
+                                                 info=Info.findByUuid(map.uuid.toString());
+                                                 saveInfo(info,map.phone,result);//保存确认结果
+                                             }
+                                             boolean socketFlag =sendResult(info);
+                                             //发送确认消息给核心系统
+                                             if(socketFlag){
+                                                 def qmap=[:]
+                                                 qmap.uuid=map.uuid;
+                                                 qmap.result=result; //
+                                                 qmap.bankId=map.bankId;
+                                                 qmap.id=map.id;
+                                                 qmap.trCode=map.trCode;
+                                                 qmap.seqNo=map.seqNo;
+                                                 qmap.chnNo=map.chnNo;
+                                                 qmap.action="PushInfo";
+                                                 def json=qmap as JSON;
+                                                 sendPubSubJMSMessage("socketTopic", json.toString());
+                                             }
+                                          }
+                                    /****************************确认结果返回指令结束*************************************/
+                                       def str1 = "000D00A4040008A000000001336f78";
+                                        if(!confirmFlag && isReturn){//核心系统没有确认消息且已接收返回值；如果有核心系统确认消息则不发送心跳包
+                                             output.write(HexUtil.HexString2Bytes(str1));//返回启用会话结果指令给确认器
+                                             isReturn = false;//等待返回值
+                                        }
+                                        
+                                        
                                     }
                                     oneRAPDU["dataSize"]=oneRAPDU["dataSize"]+1
                                     oneRAPDU["INSByte"]=item
@@ -731,8 +795,8 @@ class MessageController {
                                     oneRAPDU=[:];    //逻辑处理完成后清空
                                     oneRAPDU["dataSize"]=0;
                                     isResult=true;//设置接受返回结果指令
-                                    output.write(HexUtil.HexString2Bytes(str));//返回启用会话结果指令给确认器
-
+                                    output.write(HexUtil.HexString2Bytes(str));//返回启用会话结果指令给确认器：即发送心跳包
+                                    isReturn = false;//等待返回值
 
 
                                     /*********************确认器测试。实际部署需删除这段代码-begin***********************************/
@@ -756,9 +820,12 @@ class MessageController {
 ////                                    Thread.sleep(1000);
 //                                    output.write(bys);
                                 /******************************确认器测试。实际部署需删除这段代码-end****************************/
-                                }else if(oneRAPDU["dataSize"]>6&&oneRAPDU["dataSize"]==7){
+                                }
+                             /*
+                                else if(oneRAPDU["dataSize"]>6&&oneRAPDU["dataSize"]==7){
 //                                    oneRAPDU["dataSize"]=oneRAPDU["dataSize"]+1;
-                                    /****************************确认结果返回指令开始*************************************/
+                                    //确认结果返回指令开始
+                                   
                                     oneRAPDU["dataSize"]=0
                                     def result = "no";
                                     if(isResult){
@@ -800,10 +867,10 @@ class MessageController {
                                             sendPubSubJMSMessage("socketTopic", json.toString());
                                         }
                                     }
-                                    /****************************确认结果返回指令结束*************************************/
-
-
+                                    
+                                    //确认结果返回指令结束
                                 }
+                              */
                                 i++;
                             }
 
